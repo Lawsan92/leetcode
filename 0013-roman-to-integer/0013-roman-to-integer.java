@@ -14,12 +14,10 @@ class Solution {
         int base10 = 0;
 
         for (int i = 0; i < s.length(); i++) {
-            char curNumeral = s.charAt(i);
-            int curNum = numeralMap.get(curNumeral);
+            int curNum = numeralMap.get(s.charAt(i));
             // bounds check
             if (i + 1 < s.length()) {
-                Character nextNumeral = s.charAt(i + 1);
-                int nextNum = numeralMap.get(nextNumeral);
+                int nextNum = numeralMap.get(s.charAt(i + 1));
                 if (curNum < nextNum) {
                     base10 += nextNum - curNum;
                     i += 1;
