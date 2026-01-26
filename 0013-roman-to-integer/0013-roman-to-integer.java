@@ -14,23 +14,21 @@ class Solution {
         int base10 = 0;
 
         for (int i = 0; i < s.length(); i++) {
-            int sum = 0;
-            Character curNumeral = s.charAt(i);
+            char curNumeral = s.charAt(i);
             int curNum = numeralMap.get(curNumeral);
-            if (i == s.length() - 1) {
-                base10 = base10 + curNum;   
-                break;
-            }
-            Character nextNumeral = s.charAt(i + 1);
-            int nextNum = numeralMap.get(nextNumeral);
-            if (curNum < nextNum) {
-                sum = nextNum - curNum;
-                System.out.println(sum + base10);
-                i = i + 1;
+            // bounds check
+            if (i + 1 < s.length()) {
+                Character nextNumeral = s.charAt(i + 1);
+                int nextNum = numeralMap.get(nextNumeral);
+                if (curNum < nextNum) {
+                    base10 += nextNum - curNum;
+                    i += 1;
+                } else {
+                    base10 += curNum;
+                }
             } else {
-                sum = curNum;
+                base10 += curNum;
             }
-            base10 = base10 + sum;
         }
 
         /*
